@@ -1,0 +1,27 @@
+<div ng-cloak>
+  <md-toolbar>
+    <div id="profile" layout="column" layout-margin ng-show="$ctrl.isLoggedIn()" >
+      <img name="profile-img" class="user-avatar" src="/assets/images/5cc6d9872253e554e2c56fb80581753csz200.jpg"/>
+      <h4 name="profile-name" class="navbar-text">Name {{ $ctrl.getCurrentUser().name }}</h4>
+      <h5 name="profile-email" class="navbar-text">email: {{ $ctrl.getCurrentUser().email}}</h5>
+
+    </div>
+  </md-toolbar>
+  <md-list class="nav-list">
+  <md-list-item  md-ink-ripple ng-repeat="item in $ctrl.authMenu" ng-show="item.visible()" ng-class="{active: $ctrl.isActive(item.path)}">
+      <a ng-href="{{item.path}}" ng-click="$ctrl.closeDrawer()">
+        <md-icon md-svg-icon="{{item.icon}}" ></md-icon>
+    	<p>{{item.title}}</p>
+      </a>
+    </md-list-item>
+    <md-divider></md-divider>
+    <md-subheader class="md-no-sticky">Menu</md-subheader>
+    <!--<md-list >-->
+    <md-list-item  md-ink-ripple ng-repeat="item in $ctrl.menu" ng-class="{active: $ctrl.isActive(item.path)}">
+      <a ng-href="{{item.path}}" ng-click="$ctrl.closeDrawer()">
+        <md-icon md-svg-icon="{{item.icon}}" ></md-icon>
+    	<p>{{item.title}}</p>
+      </a>
+    </md-list-item>
+  </md-list>
+</div>

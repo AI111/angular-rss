@@ -1,0 +1,23 @@
+    chanel{
+        overflow: auto;
+    }
+    .card-grid{
+    	display:flex;
+    	flex-direction:row;
+    	flex-wrap: wrap;
+
+    }
+    .card-grid .card{
+    	flex:1 1 auto;
+    	width: 30%;
+    }
+    @media (max-width: 768px){
+    	.card-grid .card{
+    		width: 100%;
+    	}
+    }
+    @media (min-width: 769px) and (max-width: 1280px){
+    	.card-grid .card{
+    		width: 45%;
+    	}
+    }

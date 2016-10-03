@@ -1,0 +1,41 @@
+
+
+<md-dialog flex="50" aria-label="Create room">
+	<form ng-cloak>
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<h2>Create room</h2>
+				<span flex></span>
+				<md-button class="md-icon-button" ng-click="ctrl.cancel()">
+					<md-icon md-svg-src="assets/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+				</md-button>
+			</div>
+		</md-toolbar>
+		<md-dialog-content class="md-padding autocomplete">
+			<div layout="column" class="contactChips">
+				<form name="projectForm">
+					<md-input-container flex="50">
+						<label>rss url</label>
+						<input required name="clientName" ng-model="dialogCtrl.chanel.feed">
+						<div ng-messages="projectForm.clientName.$error">
+							<div ng-message="required">This is required.</div>
+						</div>
+					</md-input-container>
+					<md-select ng-model="dialogCtrl.chanel.group" name="group" placeholder="Group" class="md-no-underline" required>
+						<md-option ng-repeat="group in dialogCtrl.groups" value="{{group._id}}">{{group.name}}</md-option>
+					</md-select>
+				</form>
+			</div>
+		</md-dialog-content>
+		<md-dialog-actions layout="row">
+			<span flex></span>
+			<md-button  ng-disabled="dialogCtrl.isChecked(projectForm.clientName.$error || projectForm.group.$error)" ng-click="dialogCtrl.create($event)">
+				Create
+			</md-button>
+			<md-button ng-click="dialogCtrl.cancel($event)">
+				Cancle
+			</md-button>
+		</md-dialog-actions>
+	</form>
+</md-dialog>
+

@@ -1,0 +1,25 @@
+<!-- <h3>}</h3> -->
+<p>{{$ctrl.text}}</p>
+<div layout="row" layout-align="center center">
+	<svg ng-attr-height="{{$ctrl.height}}" ng-attr-width="{{$ctrl.width}}" class="pie-diagramm">
+
+		<!-- <circle fill="#111111" fill-opacity="1"
+		ng-attr-cx="{{$ctrl.circle.x}}"
+		ng-attr-cy="{{$ctrl.circle.y}}"
+		ng-attr-r="{{$ctrl.circle.r}}">
+	</circle> -->
+	<path ng-repeat="path in $ctrl.circle.paths"
+	ng-attr-d="{{path.d}}" ng-attr-fill="{{path.fill}}"
+	ng-atr-stroke="{{path.stroke}}" stroke-miterlimit="4"
+	ng-click="$ctrl.onSelectPath($event,path)"
+	ng-mousemove="$ctrl.onMoveInPath($event,path)"
+	ng-mouseenter="$ctrl.onEnterPath($event,path)"
+	ng-mouseleave="$ctrl.onLeavePath($event,path)">
+</path>
+</div>
+<div ng-show="$ctrl.secectedPath" class="pieTip"
+ng-style="{'left':$ctrl.tip.x+'px','top':$ctrl.tip.y+'px'}">
+  <strong>{{$ctrl.secectedPath.letter}}:
+ </strong>{{$ctrl.secectedPath.part*100 | number:5}}%
+ </div>
+</svg>

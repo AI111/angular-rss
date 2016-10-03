@@ -1,0 +1,81 @@
+<md-toolbar class="md-hue-2" md-scroll-shrink flex="initial" ng-show="!$ctrl.showSearch">
+  <div class="md-toolbar-tools">
+    <md-button class="md-icon-button" aria-label="Settings" ng-click="$ctrl.toggleSideNav()">
+      <md-icon md-svg-src="/assets/icons/ic_menu_36px.svg"></md-icon>
+    </md-button>
+    <h2>
+      <span>Cgannels</span>
+    </h2>
+    <span flex></span>
+    <md-button  class="md-icon-button" aria-label="Remove Group" ng-click="$ctrl.deleteGroupe($event)">
+      <ng-md-icon icon="remove"></ng-md-icon>
+    </md-button>
+    <md-button  class="md-icon-button" aria-label="Add group" ng-click="$ctrl.addGroupe($event)">
+      <ng-md-icon icon="add"></ng-md-icon>
+    </md-button>
+    <md-button ng-show="tabs.selectedIndex!==1" class="md-icon-button" aria-label="Search" ng-click="$ctrl.showSearch = !showSearch">
+      <ng-md-icon icon="search"></ng-md-icon>
+    </md-button>
+  </div>
+  <!-- <md-tabs md-selected="tabs.selectedIndex" flex>
+    <md-tab ng-repeat="tab in $ctrl.groups" id="cintacts" aria-controls="tab1-content">{{tab.name}}</md-tab>
+  </md-tabs> -->
+</md-toolbar>
+<md-toolbar class="md-hue-1" ng-show="$ctrl.showSearch">
+  <div class="md-toolbar-tools">
+    <md-button class="md-icon-button" ng-click="$ctrl.showSearch = !$ctrl.showSearch" aria-label="Back">
+      <ng-md-icon icon="arrow_back"></ng-md-icon>
+    </md-button>
+    <h3 flex="10" ng-show="$mdMedia('gt-sm')">
+      Back
+    </h3>
+    <md-input-container  flex  layout="row" md-no-float layout-align="center end">
+      <input ng-model="search.title" placeholder="enter search">
+    </md-input-container>
+    <md-button class="md-icon-button" aria-label="Search" ng-click="showSearch = !showSearch">
+      <ng-md-icon icon="search"></ng-md-icon>
+    </md-button>
+    <md-button class="md-icon-button" aria-label="Open Settings" ng-click="showListBottomSheet($event)">
+      <ng-md-icon icon="more_vert"></ng-md-icon>
+    </md-button>
+  </div>
+
+</md-toolbar>
+<md-content>
+  <md-tabs class="md-primary" md-selected="$ctrl.selectedIndex" md-dynamic-height md-border-bottom>
+    <md-tab ng-repeat="group in $ctrl.groups" label="{{group.name}}">
+      <md-content class="md-padding">
+<!--         {{group}}
+        <div ng-repeat="chanel in group.chanels">
+          <p>{{chanel}}</p>
+        </div> -->
+        <md-card  ng-repeat="(key, chanel) in group.chanels | filter:search">
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">{{chanel.title}}</span>
+              <span class="md-subhead">Small</span>
+            </md-card-title-text>
+            <md-card-title-media>
+              <div class="md-media-md card-media">
+              <img ng-src="{{chanel.image}}" flex/>
+              </div>
+            </md-card-title-media>
+          </md-card-title>
+          <md-card-content>
+            <p>
+              {{chanel.description}}
+            </p>
+          </md-card-content>
+          <md-card-actions layout="row" layout-align="end center">
+            <md-button ng-href="/chanel/{{chanel._id}}">Open</md-button>
+            <md-button ng-click="$ctrl.deleteChanel($event, chanel, key)">Delete</md-button>
+          </md-card-actions>
+        </md-card>
+
+      </md-content>
+    </md-tab>
+  </md-tabs>
+</md-content>
+<md-button  class="md-fab md-fab-bottom-right" ng-click="$ctrl.addChanel($event)" aria-label="Create person">
+  <md-icon md-svg-src="assets/icons/ic_add_black_24px.svg"></md-icon>
+</md-button>
